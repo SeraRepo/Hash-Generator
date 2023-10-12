@@ -6,4 +6,4 @@ WORKDIR /
 
 RUN make
 
-CMD [ "./src/main" ]
+ENTRYPOINT [ "./src/main" ]
