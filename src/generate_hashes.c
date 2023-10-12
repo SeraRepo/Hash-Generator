@@ -1,26 +1,28 @@
 #include <stdio.h>
+#include <crypt.h>
 #include <stdlib.h>
 
-int readFile( FILE * file)
+int generateHashesFromFile( FILE * file)
 {
     char * line = NULL;
+    char * filename = "rainbowtable.table";
     size_t len = 0;
     int read;
 
     if (file == NULL)
-        exit(EXIT_FAILURE);
+        return 1;
+
+    FILE *fp = fopen(filename, "w");
+    if (fp == NULL) 
+        return 1;
 
     while ((read = getline(&line, &len, file)) != -1) {
-        printf("Retrieved line of length %d:\n", read);
-        printf("%s", line);
+        char *cryptLine = crypt(line, "key");
+        fprintf(fp, "%s\n", cryptLine);
     }
-
-    fseek(file, 0, SEEK_END);
-    unsigned long size = (unsigned long)ftell(file);
-    printf("Size of the file: %ld", size);
 
     fclose(file);
     if (line)
         free(line);
-    exit(EXIT_SUCCESS);
+    return 0;
 }

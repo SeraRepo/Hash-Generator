@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../include/generate_hashes.h"
+#include "../include/includes.h"
 
 void print_error_message() {
     printf("Wrong arguments or number of arguments.\n");
@@ -19,19 +19,25 @@ int main(int argc, char* argv[]) {
             if (f == NULL) {
                 printf("Cannot open file.");
                 return 1;
-            }   
-            printf("%s\n",argv[2]);
-            readFile(f);
+            }  
+            generateHashesFromFile(f);
             break;
-        
+
+        case 'L':
+            FILE *inputFile = fopen(argv[2], "r");
+            FILE *rainbowTable = fopen(argv[3], "r");
+            if (inputFile == NULL || rainbowTable == NULL) {
+                printf("Cannot open file.");
+                return 1;
+            }  
+            testPasswordFromFile(inputFile, rainbowTable);
+            break;
+
+
         default:
             print_error_message();
             break;
         }
-    }
-    {
-        print_error_message();
-        return 1;
     }
     
     return 0;
