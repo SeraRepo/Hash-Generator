@@ -15,6 +15,10 @@ int readFile( FILE * file)
         printf("%s", line);
     }
 
+    fseek(file, 0, SEEK_END);
+    unsigned long size = (unsigned long)ftell(file);
+    printf("Size of the file: %ld", size);
+
     fclose(file);
     if (line)
         free(line);
