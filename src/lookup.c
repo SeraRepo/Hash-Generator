@@ -75,6 +75,16 @@ const char* findPasswordFromRainbowTable(RainbowTableRow* root, const char* hash
     }
 }
 
+void freeRainbowTable(RainbowTableRow* node) {
+    if (node == NULL) {
+        return;
+    }
+
+    freeRainbowTable(node->left);
+    freeRainbowTable(node->right);
+    free(node);
+}
+
 // Fonction pour chercher les mots de passes contenue dans un fichier
 void findPassword(const char* hashFilname, const char* rainbowFilename) {
     RainbowTableRow* rainbowTable = initRainbowTableFromFile(rainbowFilename);
@@ -99,4 +109,5 @@ void findPassword(const char* hashFilname, const char* rainbowFilename) {
     }
 
     fclose(hashFile);
+    freeRainbowTable(rainbowTable);
 }
