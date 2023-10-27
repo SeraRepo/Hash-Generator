@@ -1,3 +1,5 @@
 *.txt
 .vscode/
 *.o
+rainbow.table
+main
