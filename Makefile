@@ -5,11 +5,11 @@ EXEC=main
 
 all:$(EXEC)
 
-main: main.c  $(SRC)generate.o $(SRC)lookup.o
+main: $(SRC)main.c  $(SRC)generate.o $(SRC)lookup.o
 	$(CC) -o $(SRC)$@ $^ $(CFLAGS)
 
 $(SRC)%.o:  $(SRC)%.CC
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-	rm -rf $(SRC)*.o main
+	rm -rf $(SRC)*.o $(SRC)main

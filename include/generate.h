@@ -3,6 +3,6 @@
 
 #include <openssl/evp.h>
 
-int hashPasswordFile(const char *inputFile, const char *outputFile);
+int hashPasswordFile(const char *inputFile, const char *outputFile, const char * algorithm);
 
 #endif  // GENERATE_H

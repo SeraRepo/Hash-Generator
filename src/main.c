@@ -61,9 +61,9 @@ int main(int argc, char *argv[]) {
             return 1;
         }
     }
-    
+
     if (generateMode) {
-        printf("Writing %s with %s algorithm... %s\n", outputFile, algorithm, inputFile);
+        printf("Writing %s with %s algorithm... \n", outputFile, algorithm);
         hashPasswordFile(inputFile, outputFile, algorithm);
     }
 
